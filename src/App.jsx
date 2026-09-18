@@ -1,7 +1,7 @@
+// src/App.jsx
 import React from "react";
+import { Home } from "./pages/Home";
 
-const App = () => {
-	return <div>App</div>;
-};
-
-export default App;
+export default function App() {
+	return <Home />;
+}
