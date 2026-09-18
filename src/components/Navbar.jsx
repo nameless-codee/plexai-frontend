@@ -23,7 +23,6 @@ export function Navbar() {
 		{ label: t.nav.faq, href: "#faq" },
 	];
 
-	// Smooth scroll with fixed header offset
 	const handleScrollTo = (e, href) => {
 		if (href.startsWith("#")) {
 			e.preventDefault();
@@ -84,21 +83,21 @@ export function Navbar() {
 
 				{/* Right: Language Switcher & Action Buttons */}
 				<div className="hidden lg:flex items-center gap-4 z-10">
-					{/* Smooth animated sliding pill for EN / FR */}
-					<div className="flex items-center text-xs font-semibold text-[#6B7280] border border-black/10 rounded-lg p-0.5 bg-white/60 relative">
+					{/* Concentric Pill Language Switcher */}
+					<div className="flex items-center text-xs font-semibold text-[#6B7280] border border-black/10 rounded-full p-1 bg-white/70 relative shadow-2xs">
 						{["EN", "FR"].map((option) => (
 							<button
 								key={option}
 								onClick={() => setLang(option)}
-								className={`relative px-2.5 py-0.5 rounded transition-colors duration-150 z-10 ${
+								className={`relative px-3 py-1 rounded-full text-xs font-semibold transition-colors duration-150 z-10 ${
 									lang === option ? "text-[#111111]" : "hover:text-[#111111]"
 								}`}
 							>
 								{lang === option && (
 									<motion.div
 										layoutId="activeLangIndicator"
-										className="absolute inset-0 bg-black/10 rounded"
-										transition={{ type: "spring", stiffness: 450, damping: 30 }}
+										className="absolute inset-0 bg-black/10 rounded-full"
+										transition={{ type: "spring", stiffness: 500, damping: 35 }}
 									/>
 								)}
 								<span className="relative z-10">{option}</span>
@@ -152,23 +151,23 @@ export function Navbar() {
 					{/* Mobile Language Switcher */}
 					<div className="pt-2 border-t border-black/10 flex items-center justify-between">
 						<span className="text-xs text-[#6B7280]">Langue / Language</span>
-						<div className="flex items-center text-xs font-semibold text-[#6B7280] border border-black/10 rounded-lg p-0.5 bg-white/60 relative">
+						<div className="flex items-center text-xs font-semibold text-[#6B7280] border border-black/10 rounded-full p-1 bg-white/70 relative">
 							{["EN", "FR"].map((option) => (
 								<button
 									key={option}
 									onClick={() => setLang(option)}
-									className={`relative px-3 py-1 rounded transition-colors duration-150 ${
+									className={`relative px-3.5 py-1 rounded-full text-xs font-semibold transition-colors duration-150 ${
 										lang === option ? "text-[#111111]" : "hover:text-[#111111]"
 									}`}
 								>
 									{lang === option && (
 										<motion.div
 											layoutId="activeLangIndicatorMobile"
-											className="absolute inset-0 bg-black/10 rounded"
+											className="absolute inset-0 bg-black/10 rounded-full"
 											transition={{
 												type: "spring",
-												stiffness: 450,
-												damping: 30,
+												stiffness: 500,
+												damping: 35,
 											}}
 										/>
 									)}
