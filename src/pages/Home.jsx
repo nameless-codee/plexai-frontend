@@ -19,16 +19,9 @@ export function Home() {
 	const { lang } = useLanguage();
 
 	return (
-		<div className="min-h-screen bg-[#F8F8F5] text-[#111111] selection:bg-[#635BFF] selection:text-white">
-			{/* Navbar stays fixed and independent */}
+		<div className="min-h-screen bg-[#F8F8F5] dark:bg-[#111111] text-[#111111] dark:text-[#F8F8F5] selection:bg-[#635BFF] selection:text-white transition-colors duration-200">
 			<Navbar />
 
-			{/* 
-        Smooth content transition triggered only when `lang` toggles:
-        - We animate opacity from 0.65 to 1 over 220ms.
-        - Because we don't unmount the page, the browser does NOT re-flow 
-          the layout, retaining the exact scroll position smoothly.
-      */}
 			<motion.div
 				key={lang}
 				initial={{ opacity: 0.65 }}

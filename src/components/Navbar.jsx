@@ -1,12 +1,14 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowRight, Building2 } from "lucide-react";
+import { Menu, X, ArrowRight, Building2, Sun, Moon } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
 
 export function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const { lang, setLang, t } = useLanguage();
+	const { theme, toggleTheme } = useTheme();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -44,7 +46,7 @@ export function Navbar() {
 		<header
 			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
 				isScrolled
-					? "bg-[#F8F8F5]/80 backdrop-blur-xl border-b border-black/10 py-3 shadow-xs"
+					? "bg-[#F8F8F5]/80 dark:bg-[#111111]/85 backdrop-blur-xl border-b border-black/10 dark:border-white/10 py-3 shadow-xs"
 					: "bg-transparent border-transparent py-5"
 			}`}
 		>
@@ -61,47 +63,45 @@ export function Navbar() {
 					<div className="h-8 w-8 rounded-lg bg-[#635BFF] flex items-center justify-center text-white shadow-xs">
 						<Building2 className="h-4 w-4" />
 					</div>
-					<span className="font-semibold text-lg tracking-tight text-[#111111] leading-none">
+					<span className="font-semibold text-lg tracking-tight text-[#111111] dark:text-[#F8F8F5] leading-none">
 						PlexAI
 					</span>
 				</a>
 
 				{/* Center: True-Centered Desktop Links */}
-				<nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-[#6B7280] absolute left-1/2 -translate-x-1/2">
+				<nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-[#6B7280] dark:text-neutral-400 absolute left-1/2 -translate-x-1/2">
 					{navLinks.map((link) => (
 						<a
 							key={link.label}
 							href={link.href}
 							onClick={(e) => handleScrollTo(e, link.href)}
-							className="hover:text-[#111111] transition-colors cursor-pointer"
+							className="hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors cursor-pointer"
 						>
 							{link.label}
 						</a>
 					))}
 				</nav>
 
-				{/* Right: Language Switcher & Action Buttons */}
-				<div className="hidden lg:flex items-center gap-4 z-10">
-					{/* High-Performance Fluid Language Toggle */}
+				{/* Right: Actions */}
+				<div className="hidden lg:flex items-center gap-3.5 z-10">
+					{/* Language Switcher */}
 					<div
 						role="group"
 						aria-label="Language selection"
-						className="relative flex items-center bg-white/70 border border-black/10 rounded-full p-0.5 shadow-2xs select-none"
+						className="relative flex items-center bg-white/70 dark:bg-[#181818] border border-black/10 dark:border-white/10 rounded-full p-0.5 shadow-2xs select-none"
 					>
-						{/* Sliding Pill Indicator */}
 						<div
-							className={`absolute top-0.5 bottom-0.5 left-0.5 w-[34px] rounded-full bg-black/10 transition-transform duration-200 ease-out will-change-transform ${
+							className={`absolute top-0.5 bottom-0.5 left-0.5 w-[34px] rounded-full bg-black/10 dark:bg-white/15 transition-transform duration-200 ease-out will-change-transform ${
 								lang === "FR" ? "translate-x-[34px]" : "translate-x-0"
 							}`}
 						/>
-
 						<button
 							type="button"
 							onClick={() => setLang("EN")}
 							className={`relative z-10 w-[34px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
 								lang === "EN"
-									? "text-[#111111]"
-									: "text-[#6B7280] hover:text-[#111111]"
+									? "text-[#111111] dark:text-[#F8F8F5]"
+									: "text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5]"
 							}`}
 						>
 							EN
@@ -111,17 +111,31 @@ export function Navbar() {
 							onClick={() => setLang("FR")}
 							className={`relative z-10 w-[34px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
 								lang === "FR"
-									? "text-[#111111]"
-									: "text-[#6B7280] hover:text-[#111111]"
+									? "text-[#111111] dark:text-[#F8F8F5]"
+									: "text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5]"
 							}`}
 						>
 							FR
 						</button>
 					</div>
 
+					{/* Theme Toggle Button (Light / Dark) */}
+					<button
+						type="button"
+						onClick={toggleTheme}
+						aria-label="Toggle theme"
+						className="h-8 w-8 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-[#181818] flex items-center justify-center text-[#111111] dark:text-[#F8F8F5] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+					>
+						{theme === "dark" ? (
+							<Sun className="h-4 w-4 text-amber-400" />
+						) : (
+							<Moon className="h-4 w-4 text-neutral-600" />
+						)}
+					</button>
+
 					<a
 						href="#signin"
-						className="text-sm font-medium text-[#111111] hover:text-[#635BFF] transition-colors px-2"
+						className="text-sm font-medium text-[#111111] dark:text-[#F8F8F5] hover:text-[#635BFF] transition-colors px-1"
 					>
 						{t.nav.signIn}
 					</a>
@@ -137,7 +151,7 @@ export function Navbar() {
 				{/* Mobile Hamburger */}
 				<button
 					onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-					className="lg:hidden p-2 rounded-lg text-[#111111] hover:bg-black/5"
+					className="lg:hidden p-2 rounded-lg text-[#111111] dark:text-[#F8F8F5] hover:bg-black/5 dark:hover:bg-white/10"
 					aria-label="Toggle Menu"
 				>
 					{mobileMenuOpen ? (
@@ -150,56 +164,73 @@ export function Navbar() {
 
 			{/* Mobile Drawer */}
 			{mobileMenuOpen && (
-				<div className="lg:hidden px-5 pt-4 pb-6 bg-[#F8F8F5] border-b border-black/10 flex flex-col gap-4">
+				<div className="lg:hidden px-5 pt-4 pb-6 bg-[#F8F8F5] dark:bg-[#111111] border-b border-black/10 dark:border-white/10 flex flex-col gap-4">
 					{navLinks.map((link) => (
 						<a
 							key={link.label}
 							href={link.href}
 							onClick={(e) => handleScrollTo(e, link.href)}
-							className="text-base font-medium text-[#111111] py-1 cursor-pointer"
+							className="text-base font-medium text-[#111111] dark:text-[#F8F8F5] py-1 cursor-pointer"
 						>
 							{link.label}
 						</a>
 					))}
 
-					{/* Mobile Language Switcher */}
-					<div className="pt-2 border-t border-black/10 flex items-center justify-between">
-						<span className="text-xs text-[#6B7280]">Langue / Language</span>
-						<div className="relative flex items-center bg-white/70 border border-black/10 rounded-full p-0.5 select-none">
-							<div
-								className={`absolute top-0.5 bottom-0.5 left-0.5 w-[36px] rounded-full bg-black/10 transition-transform duration-200 ease-out will-change-transform ${
-									lang === "FR" ? "translate-x-[36px]" : "translate-x-0"
-								}`}
-							/>
+					{/* Mobile Switchers: Language & Theme */}
+					<div className="pt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
+						<span className="text-xs text-[#6B7280] dark:text-neutral-400">
+							Theme & Lang
+						</span>
+						<div className="flex items-center gap-2">
 							<button
 								type="button"
-								onClick={() => setLang("EN")}
-								className={`relative z-10 w-[36px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
-									lang === "EN"
-										? "text-[#111111]"
-										: "text-[#6B7280] hover:text-[#111111]"
-								}`}
+								onClick={toggleTheme}
+								aria-label="Toggle theme"
+								className="h-8 w-8 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-[#181818] flex items-center justify-center text-[#111111] dark:text-[#F8F8F5]"
 							>
-								EN
+								{theme === "dark" ? (
+									<Sun className="h-4 w-4 text-amber-400" />
+								) : (
+									<Moon className="h-4 w-4 text-neutral-600" />
+								)}
 							</button>
-							<button
-								type="button"
-								onClick={() => setLang("FR")}
-								className={`relative z-10 w-[36px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
-									lang === "FR"
-										? "text-[#111111]"
-										: "text-[#6B7280] hover:text-[#111111]"
-								}`}
-							>
-								FR
-							</button>
+
+							<div className="relative flex items-center bg-white/70 dark:bg-[#181818] border border-black/10 dark:border-white/10 rounded-full p-0.5 select-none">
+								<div
+									className={`absolute top-0.5 bottom-0.5 left-0.5 w-[36px] rounded-full bg-black/10 dark:bg-white/15 transition-transform duration-200 ease-out will-change-transform ${
+										lang === "FR" ? "translate-x-[36px]" : "translate-x-0"
+									}`}
+								/>
+								<button
+									type="button"
+									onClick={() => setLang("EN")}
+									className={`relative z-10 w-[36px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+										lang === "EN"
+											? "text-[#111111] dark:text-[#F8F8F5]"
+											: "text-[#6B7280] dark:text-neutral-400"
+									}`}
+								>
+									EN
+								</button>
+								<button
+									type="button"
+									onClick={() => setLang("FR")}
+									className={`relative z-10 w-[36px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+										lang === "FR"
+											? "text-[#111111] dark:text-[#F8F8F5]"
+											: "text-[#6B7280] dark:text-neutral-400"
+									}`}
+								>
+									FR
+								</button>
+							</div>
 						</div>
 					</div>
 
-					<div className="pt-2 border-t border-black/10 flex flex-col gap-3">
+					<div className="pt-2 border-t border-black/10 dark:border-white/10 flex flex-col gap-3">
 						<a
 							href="#signin"
-							className="w-full text-center text-sm font-medium py-2 rounded-lg border border-black/10"
+							className="w-full text-center text-sm font-medium py-2 rounded-lg border border-black/10 dark:border-white/10 text-[#111111] dark:text-[#F8F8F5]"
 						>
 							{t.nav.signIn}
 						</a>
