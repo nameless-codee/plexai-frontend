@@ -2,14 +2,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "../lib/animations";
+import { useLanguage } from "../context/LanguageContext";
 
 export function Stats() {
-	const metrics = [
-		{ value: "12,894", label: "Properties scored" },
-		{ value: "96", label: "Added in the last 24h" },
-		{ value: "239", label: "Quebec cities covered" },
-		{ value: "100%", label: "Backed by official data" },
-	];
+	const { t } = useLanguage();
 
 	return (
 		<section className="py-16 sm:py-20 border-y border-black/10 bg-[#F8F8F5]">
@@ -21,7 +17,7 @@ export function Stats() {
 					viewport={{ once: true }}
 					className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center"
 				>
-					{metrics.map((m) => (
+					{t.stats.map((m) => (
 						<motion.div key={m.label} variants={fadeUp}>
 							<div className="text-4xl sm:text-5xl font-semibold tracking-tight text-[#111111]">
 								{m.value}

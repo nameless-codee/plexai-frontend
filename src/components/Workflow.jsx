@@ -3,28 +3,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Search, Cpu, Zap } from "lucide-react";
 import { fadeUp, staggerContainer } from "../lib/animations";
+import { useLanguage } from "../context/LanguageContext";
 
 export function Workflow() {
-	const steps = [
-		{
-			num: "01",
-			icon: Search,
-			title: "Step 1: We scan, around the clock",
-			desc: "PlexAI continuously monitors the Quebec market and merges duplicate listings into one clean record.",
-		},
-		{
-			num: "02",
-			icon: Cpu,
-			title: "Step 2: AI scores & checks zoning",
-			desc: "Each property gets a deal score, full financials, comparable analysis, and its development potential.",
-		},
-		{
-			num: "03",
-			icon: Zap,
-			title: "Step 3: You get the edge",
-			desc: "Browse the ranked dashboard, or let alerts bring the best matching deals straight to your inbox.",
-		},
-	];
+	const { t } = useLanguage();
+	const icons = [Search, Cpu, Zap];
 
 	return (
 		<section
@@ -34,10 +17,10 @@ export function Workflow() {
 			<div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
 				<div className="text-center max-w-2xl mx-auto mb-16">
 					<span className="text-xs font-bold uppercase tracking-widest text-[#635BFF]">
-						HOW IT WORKS
+						{t.workflow.tag}
 					</span>
 					<h2 className="mt-3 text-3xl sm:text-5xl font-semibold tracking-tight text-[#111111]">
-						From the whole market to a verdict — in seconds
+						{t.workflow.heading}
 					</h2>
 				</div>
 
@@ -48,8 +31,8 @@ export function Workflow() {
 					viewport={{ once: true }}
 					className="grid grid-cols-1 md:grid-cols-3 gap-8"
 				>
-					{steps.map((s) => {
-						const Icon = s.icon;
+					{t.workflow.steps.map((s, idx) => {
+						const Icon = icons[idx];
 						return (
 							<motion.div
 								key={s.num}

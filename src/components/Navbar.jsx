@@ -1,11 +1,12 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowRight, Building2 } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [lang, setLang] = useState("EN");
+	const { lang, setLang, t } = useLanguage();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -16,18 +17,17 @@ export function Navbar() {
 	}, []);
 
 	const navLinks = [
-		{ label: "Features", href: "#features" },
-		{ label: "How it works", href: "#how-it-works" },
-		{ label: "FAQ", href: "#faq" },
+		{ label: t.nav.features, href: "#features" },
+		{ label: t.nav.howItWorks, href: "#how-it-works" },
+		{ label: t.nav.faq, href: "#faq" },
 	];
 
-	// Smooth scroll handler with offset for the fixed navbar
 	const handleScrollTo = (e, href) => {
 		if (href.startsWith("#")) {
 			e.preventDefault();
 			const targetElement = document.querySelector(href);
 			if (targetElement) {
-				const navHeight = 80; // height of navbar offset
+				const navHeight = 80;
 				const elementPosition = targetElement.getBoundingClientRect().top;
 				const offsetPosition = elementPosition + window.pageYOffset - navHeight;
 
@@ -66,7 +66,7 @@ export function Navbar() {
 					</span>
 				</a>
 
-				{/* Center: True-Centered Desktop Links with Smooth Scroll */}
+				{/* Center: True-Centered Desktop Links */}
 				<nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-[#6B7280] absolute left-1/2 -translate-x-1/2">
 					{navLinks.map((link) => (
 						<a
@@ -80,12 +80,12 @@ export function Navbar() {
 					))}
 				</nav>
 
-				{/* Right: Actions */}
+				{/* Right: Language Switcher & Action Buttons */}
 				<div className="hidden lg:flex items-center gap-4 z-10">
 					<div className="flex items-center text-xs font-semibold text-[#6B7280] border border-black/10 rounded-lg p-1 bg-white/50">
 						<button
 							onClick={() => setLang("EN")}
-							className={`px-2 py-0.5 rounded ${
+							className={`px-2 py-0.5 rounded transition-colors ${
 								lang === "EN"
 									? "bg-black/10 text-[#111111]"
 									: "hover:text-[#111111]"
@@ -96,7 +96,7 @@ export function Navbar() {
 						<span className="text-black/20">|</span>
 						<button
 							onClick={() => setLang("FR")}
-							className={`px-2 py-0.5 rounded ${
+							className={`px-2 py-0.5 rounded transition-colors ${
 								lang === "FR"
 									? "bg-black/10 text-[#111111]"
 									: "hover:text-[#111111]"
@@ -110,13 +110,13 @@ export function Navbar() {
 						href="#signin"
 						className="text-sm font-medium text-[#111111] hover:text-[#635BFF] transition-colors px-2"
 					>
-						Sign in
+						{t.nav.signIn}
 					</a>
 					<a
 						href="#get-started"
 						className="inline-flex items-center gap-2 bg-[#635BFF] text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-[#635BFF]/90 transition-all shadow-xs"
 					>
-						Get started
+						{t.nav.getStarted}
 						<ArrowRight className="h-4 w-4" />
 					</a>
 				</div>
@@ -149,7 +149,7 @@ export function Navbar() {
 						</a>
 					))}
 					<div className="pt-2 border-t border-black/10 flex items-center justify-between">
-						<span className="text-xs text-[#6B7280]">Language</span>
+						<span className="text-xs text-[#6B7280]">Langue / Language</span>
 						<div className="flex gap-2 text-xs font-semibold">
 							<button
 								onClick={() => setLang("EN")}
@@ -171,13 +171,13 @@ export function Navbar() {
 							href="#signin"
 							className="w-full text-center text-sm font-medium py-2 rounded-lg border border-black/10"
 						>
-							Sign in
+							{t.nav.signIn}
 						</a>
 						<a
 							href="#get-started"
 							className="w-full bg-[#635BFF] text-white text-sm font-medium py-2.5 rounded-lg flex items-center justify-center gap-2"
 						>
-							Get started
+							{t.nav.getStarted}
 							<ArrowRight className="h-4 w-4" />
 						</a>
 					</div>
