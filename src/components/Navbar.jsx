@@ -24,6 +24,7 @@ export function Navbar() {
 		{ label: t.nav.faq, href: "#faq" },
 	];
 
+	// Smooth scroll with fixed header offset
 	const handleScrollTo = (e, href) => {
 		if (href.startsWith("#")) {
 			e.preventDefault();
@@ -68,7 +69,7 @@ export function Navbar() {
 					</span>
 				</a>
 
-				{/* Center: True-Centered Desktop Links */}
+				{/* Center: True-Centered Desktop Navigation */}
 				<nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-[#6B7280] dark:text-neutral-400 absolute left-1/2 -translate-x-1/2">
 					{navLinks.map((link) => (
 						<a
@@ -82,13 +83,13 @@ export function Navbar() {
 					))}
 				</nav>
 
-				{/* Right: Actions */}
-				<div className="hidden lg:flex items-center gap-3.5 z-10">
-					{/* Language Switcher */}
+				{/* Right: Desktop Controls (Language, Theme, CTA) */}
+				<div className="hidden lg:flex items-center gap-3 z-10">
+					{/* Language Toggle: Fixed h-8 with smooth sliding pill */}
 					<div
 						role="group"
 						aria-label="Language selection"
-						className="relative flex items-center bg-white/70 dark:bg-[#181818] border border-black/10 dark:border-white/10 rounded-full p-0.5 shadow-2xs select-none"
+						className="relative flex items-center h-8 bg-white/70 dark:bg-[#181818] border border-black/10 dark:border-white/10 rounded-full p-0.5 shadow-2xs select-none"
 					>
 						<div
 							className={`absolute top-0.5 bottom-0.5 left-0.5 w-[34px] rounded-full bg-black/10 dark:bg-white/15 transition-transform duration-200 ease-out will-change-transform ${
@@ -98,7 +99,7 @@ export function Navbar() {
 						<button
 							type="button"
 							onClick={() => setLang("EN")}
-							className={`relative z-10 w-[34px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+							className={`relative z-10 w-[34px] h-full flex items-center justify-center text-xs font-semibold rounded-full transition-colors duration-150 ${
 								lang === "EN"
 									? "text-[#111111] dark:text-[#F8F8F5]"
 									: "text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5]"
@@ -109,7 +110,7 @@ export function Navbar() {
 						<button
 							type="button"
 							onClick={() => setLang("FR")}
-							className={`relative z-10 w-[34px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+							className={`relative z-10 w-[34px] h-full flex items-center justify-center text-xs font-semibold rounded-full transition-colors duration-150 ${
 								lang === "FR"
 									? "text-[#111111] dark:text-[#F8F8F5]"
 									: "text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5]"
@@ -119,12 +120,12 @@ export function Navbar() {
 						</button>
 					</div>
 
-					{/* Theme Toggle Button (Light / Dark) */}
+					{/* Theme Toggle Button: Exact Matching h-8 w-8 */}
 					<button
 						type="button"
 						onClick={toggleTheme}
 						aria-label="Toggle theme"
-						className="h-8 w-8 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-[#181818] flex items-center justify-center text-[#111111] dark:text-[#F8F8F5] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+						className="h-8 w-8 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-[#181818] flex items-center justify-center text-[#111111] dark:text-[#F8F8F5] hover:bg-black/5 dark:hover:bg-white/10 transition-colors shadow-2xs shrink-0"
 					>
 						{theme === "dark" ? (
 							<Sun className="h-4 w-4 text-amber-400" />
@@ -148,7 +149,7 @@ export function Navbar() {
 					</a>
 				</div>
 
-				{/* Mobile Hamburger */}
+				{/* Mobile Hamburger Button */}
 				<button
 					onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 					className="lg:hidden p-2 rounded-lg text-[#111111] dark:text-[#F8F8F5] hover:bg-black/5 dark:hover:bg-white/10"
@@ -182,20 +183,7 @@ export function Navbar() {
 							Theme & Lang
 						</span>
 						<div className="flex items-center gap-2">
-							<button
-								type="button"
-								onClick={toggleTheme}
-								aria-label="Toggle theme"
-								className="h-8 w-8 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-[#181818] flex items-center justify-center text-[#111111] dark:text-[#F8F8F5]"
-							>
-								{theme === "dark" ? (
-									<Sun className="h-4 w-4 text-amber-400" />
-								) : (
-									<Moon className="h-4 w-4 text-neutral-600" />
-								)}
-							</button>
-
-							<div className="relative flex items-center bg-white/70 dark:bg-[#181818] border border-black/10 dark:border-white/10 rounded-full p-0.5 select-none">
+							<div className="relative flex items-center h-8 bg-white/70 dark:bg-[#181818] border border-black/10 dark:border-white/10 rounded-full p-0.5 select-none">
 								<div
 									className={`absolute top-0.5 bottom-0.5 left-0.5 w-[36px] rounded-full bg-black/10 dark:bg-white/15 transition-transform duration-200 ease-out will-change-transform ${
 										lang === "FR" ? "translate-x-[36px]" : "translate-x-0"
@@ -204,7 +192,7 @@ export function Navbar() {
 								<button
 									type="button"
 									onClick={() => setLang("EN")}
-									className={`relative z-10 w-[36px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+									className={`relative z-10 w-[36px] h-full flex items-center justify-center text-xs font-semibold rounded-full transition-colors duration-150 ${
 										lang === "EN"
 											? "text-[#111111] dark:text-[#F8F8F5]"
 											: "text-[#6B7280] dark:text-neutral-400"
@@ -215,7 +203,7 @@ export function Navbar() {
 								<button
 									type="button"
 									onClick={() => setLang("FR")}
-									className={`relative z-10 w-[36px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+									className={`relative z-10 w-[36px] h-full flex items-center justify-center text-xs font-semibold rounded-full transition-colors duration-150 ${
 										lang === "FR"
 											? "text-[#111111] dark:text-[#F8F8F5]"
 											: "text-[#6B7280] dark:text-neutral-400"
@@ -224,6 +212,19 @@ export function Navbar() {
 									FR
 								</button>
 							</div>
+
+							<button
+								type="button"
+								onClick={toggleTheme}
+								aria-label="Toggle theme"
+								className="h-8 w-8 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-[#181818] flex items-center justify-center text-[#111111] dark:text-[#F8F8F5] shrink-0"
+							>
+								{theme === "dark" ? (
+									<Sun className="h-4 w-4 text-amber-400" />
+								) : (
+									<Moon className="h-4 w-4 text-neutral-600" />
+								)}
+							</button>
 						</div>
 					</div>
 
