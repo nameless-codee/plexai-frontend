@@ -1,10 +1,11 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
+import { Menu, X, ArrowRight, Building2 } from "lucide-react";
 
 export function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [lang, setLang] = useState("EN");
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -15,11 +16,29 @@ export function Navbar() {
 	}, []);
 
 	const navLinks = [
-		{ label: "Product", href: "#product" },
-		{ label: "Solutions", href: "#solutions" },
-		{ label: "Workflow", href: "#workflow" },
-		{ label: "Pricing", href: "#pricing" },
+		{ label: "Features", href: "#features" },
+		{ label: "How it works", href: "#how-it-works" },
+		{ label: "FAQ", href: "#faq" },
 	];
+
+	// Smooth scroll handler with offset for the fixed navbar
+	const handleScrollTo = (e, href) => {
+		if (href.startsWith("#")) {
+			e.preventDefault();
+			const targetElement = document.querySelector(href);
+			if (targetElement) {
+				const navHeight = 80; // height of navbar offset
+				const elementPosition = targetElement.getBoundingClientRect().top;
+				const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+				window.scrollTo({
+					top: offsetPosition,
+					behavior: "smooth",
+				});
+			}
+			setMobileMenuOpen(false);
+		}
+	};
 
 	return (
 		<header
@@ -33,21 +52,28 @@ export function Navbar() {
 				{/* Left: Brand Logo */}
 				<a
 					href="#"
-					className="flex items-center gap-2 font-semibold text-lg tracking-tight z-10"
+					onClick={(e) => {
+						e.preventDefault();
+						window.scrollTo({ top: 0, behavior: "smooth" });
+					}}
+					className="flex items-center gap-2.5 z-10"
 				>
-					<div className="h-8 w-8 rounded-lg bg-[#635BFF] flex items-center justify-center text-white">
-						<Sparkles className="h-4 w-4" />
+					<div className="h-8 w-8 rounded-lg bg-[#635BFF] flex items-center justify-center text-white shadow-xs">
+						<Building2 className="h-4 w-4" />
 					</div>
-					<span className="text-[#111111]">PlexAi</span>
+					<span className="font-semibold text-lg tracking-tight text-[#111111] leading-none">
+						PlexAI
+					</span>
 				</a>
 
-				{/* Center: True-Centered Desktop Nav Links */}
+				{/* Center: True-Centered Desktop Links with Smooth Scroll */}
 				<nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-[#6B7280] absolute left-1/2 -translate-x-1/2">
 					{navLinks.map((link) => (
 						<a
 							key={link.label}
 							href={link.href}
-							className="hover:text-[#111111] transition-colors"
+							onClick={(e) => handleScrollTo(e, link.href)}
+							className="hover:text-[#111111] transition-colors cursor-pointer"
 						>
 							{link.label}
 						</a>
@@ -56,19 +82,46 @@ export function Navbar() {
 
 				{/* Right: Actions */}
 				<div className="hidden lg:flex items-center gap-4 z-10">
-					<button className="text-sm font-medium text-[#111111] hover:text-[#635BFF] transition-colors px-3 py-2">
-						Log in
-					</button>
+					<div className="flex items-center text-xs font-semibold text-[#6B7280] border border-black/10 rounded-lg p-1 bg-white/50">
+						<button
+							onClick={() => setLang("EN")}
+							className={`px-2 py-0.5 rounded ${
+								lang === "EN"
+									? "bg-black/10 text-[#111111]"
+									: "hover:text-[#111111]"
+							}`}
+						>
+							EN
+						</button>
+						<span className="text-black/20">|</span>
+						<button
+							onClick={() => setLang("FR")}
+							className={`px-2 py-0.5 rounded ${
+								lang === "FR"
+									? "bg-black/10 text-[#111111]"
+									: "hover:text-[#111111]"
+							}`}
+						>
+							FR
+						</button>
+					</div>
+
+					<a
+						href="#signin"
+						className="text-sm font-medium text-[#111111] hover:text-[#635BFF] transition-colors px-2"
+					>
+						Sign in
+					</a>
 					<a
 						href="#get-started"
-						className="inline-flex items-center gap-2 bg-[#635BFF] text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-[#635BFF]/90 transition-all shadow-sm"
+						className="inline-flex items-center gap-2 bg-[#635BFF] text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-[#635BFF]/90 transition-all shadow-xs"
 					>
-						Get Started
+						Get started
 						<ArrowRight className="h-4 w-4" />
 					</a>
 				</div>
 
-				{/* Mobile Hamburger Button */}
+				{/* Mobile Hamburger */}
 				<button
 					onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 					className="lg:hidden p-2 rounded-lg text-[#111111] hover:bg-black/5"
@@ -89,20 +142,44 @@ export function Navbar() {
 						<a
 							key={link.label}
 							href={link.href}
-							onClick={() => setMobileMenuOpen(false)}
-							className="text-base font-medium text-[#111111] py-1"
+							onClick={(e) => handleScrollTo(e, link.href)}
+							className="text-base font-medium text-[#111111] py-1 cursor-pointer"
 						>
 							{link.label}
 						</a>
 					))}
+					<div className="pt-2 border-t border-black/10 flex items-center justify-between">
+						<span className="text-xs text-[#6B7280]">Language</span>
+						<div className="flex gap-2 text-xs font-semibold">
+							<button
+								onClick={() => setLang("EN")}
+								className={lang === "EN" ? "text-[#635BFF]" : "text-[#6B7280]"}
+							>
+								EN
+							</button>
+							<span>|</span>
+							<button
+								onClick={() => setLang("FR")}
+								className={lang === "FR" ? "text-[#635BFF]" : "text-[#6B7280]"}
+							>
+								FR
+							</button>
+						</div>
+					</div>
 					<div className="pt-2 border-t border-black/10 flex flex-col gap-3">
-						<button className="w-full text-center text-sm font-medium py-2 rounded-lg border border-black/10">
-							Log in
-						</button>
-						<button className="w-full bg-[#635BFF] text-white text-sm font-medium py-2.5 rounded-lg flex items-center justify-center gap-2">
-							Get Started
+						<a
+							href="#signin"
+							className="w-full text-center text-sm font-medium py-2 rounded-lg border border-black/10"
+						>
+							Sign in
+						</a>
+						<a
+							href="#get-started"
+							className="w-full bg-[#635BFF] text-white text-sm font-medium py-2.5 rounded-lg flex items-center justify-center gap-2"
+						>
+							Get started
 							<ArrowRight className="h-4 w-4" />
-						</button>
+						</a>
 					</div>
 				</div>
 			)}

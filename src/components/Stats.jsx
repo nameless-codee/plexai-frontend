@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "../lib/animations";
 
 export function Stats() {
-	const stats = [
-		{ value: "10x", label: "Faster Pipeline Turnaround" },
-		{ value: "99.98%", label: "Trace Execution Uptime" },
-		{ value: "4.2M+", label: "Tasks Automated Daily" },
-		{ value: "< 80ms", label: "Edge Response Latency" },
+	const metrics = [
+		{ value: "12,894", label: "Properties scored" },
+		{ value: "96", label: "Added in the last 24h" },
+		{ value: "239", label: "Quebec cities covered" },
+		{ value: "100%", label: "Backed by official data" },
 	];
 
 	return (
-		<section className="py-20 sm:py-24 border-t border-black/10 bg-[#F8F8F5]">
+		<section className="py-16 sm:py-20 border-y border-black/10 bg-[#F8F8F5]">
 			<div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
 				<motion.div
 					variants={staggerContainer}
@@ -21,13 +21,13 @@ export function Stats() {
 					viewport={{ once: true }}
 					className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center"
 				>
-					{stats.map((s) => (
-						<motion.div key={s.label} variants={fadeUp}>
+					{metrics.map((m) => (
+						<motion.div key={m.label} variants={fadeUp}>
 							<div className="text-4xl sm:text-5xl font-semibold tracking-tight text-[#111111]">
-								{s.value}
+								{m.value}
 							</div>
-							<div className="mt-2 text-sm sm:text-base text-[#6B7280]">
-								{s.label}
+							<div className="mt-2 text-sm sm:text-base text-[#6B7280] font-medium">
+								{m.label}
 							</div>
 						</motion.div>
 					))}
@@ -36,3 +36,5 @@ export function Stats() {
 		</section>
 	);
 }
+
+export default Stats;

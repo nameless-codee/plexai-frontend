@@ -1,14 +1,17 @@
 // src/pages/Home.jsx
 import React from "react";
-import { Navbar } from "../components/Navbar";
-import { Hero } from "../components/Hero";
-import { LogoCloud } from "../components/LogoCloud";
-import { ProblemSolution } from "../components/ProblemSolution";
-import { Stats } from "../components/Stats";
-import { BentoFeatures } from "../components/BentoFeatures";
-import { Pricing } from "../components/Pricing";
-import { FinalCTA } from "../components/FinalCTA";
-import { Footer } from "../components/Footer";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Stats from "../components/Stats";
+import ProblemSolution from "../components/ProblemSolution";
+import ProductShowcase from "../components/ProductShowcase";
+import BentoFeatures from "../components/BentoFeatures";
+import DealScoreBreakdown from "../components/DealScoreBreakdown";
+import Workflow from "../components/Workflow";
+import Testimonials from "../components/Testimonials";
+import FAQ from "../components/FAQ";
+import FinalCTA from "../components/FinalCTA";
+import Footer from "../components/Footer";
 
 export function Home() {
 	return (
@@ -16,14 +19,19 @@ export function Home() {
 			<Navbar />
 			<main>
 				<Hero />
-				<LogoCloud />
-				<ProblemSolution />
 				<Stats />
+				<ProblemSolution />
+				<ProductShowcase />
 				<BentoFeatures />
-				<Pricing />
+				<DealScoreBreakdown />
+				<Workflow />
+				<Testimonials />
+				<FAQ />
 				<FinalCTA />
 			</main>
 			<Footer />
 		</div>
 	);
 }
+
+export default Home;
