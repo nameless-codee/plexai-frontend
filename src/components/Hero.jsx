@@ -28,10 +28,10 @@ export function Hero() {
 						</span>
 					</motion.div>
 
-					{/* Scaled Responsive Heading */}
+					{/* Headline: Bolder font weight with tight tracking */}
 					<motion.h1
 						variants={fadeUp}
-						className="mt-4 text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.035em] leading-[1.08] text-[#111111]"
+						className="mt-4 text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.04em] leading-[1.06] text-[#111111]"
 					>
 						{t.hero.headline}
 					</motion.h1>
@@ -51,7 +51,7 @@ export function Hero() {
 					>
 						<a
 							href="#get-started"
-							className="inline-flex items-center justify-center gap-2 bg-[#635BFF] text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-[#635BFF]/90 transition-all shadow-xs"
+							className="inline-flex items-center justify-center gap-2 bg-[#635BFF] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#635BFF]/90 transition-all shadow-xs"
 						>
 							{t.hero.startFree}
 						</a>
@@ -76,7 +76,7 @@ export function Hero() {
 					</motion.div>
 				</motion.div>
 
-				{/* Responsive, compact product preview */}
+				{/* Scaled Product Mockup */}
 				<ProductMockup />
 			</div>
 		</section>
