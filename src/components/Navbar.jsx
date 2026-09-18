@@ -24,7 +24,6 @@ export function Navbar() {
 		{ label: t.nav.faq, href: "#faq" },
 	];
 
-	// Smooth scroll with fixed header offset
 	const handleScrollTo = (e, href) => {
 		if (href.startsWith("#")) {
 			e.preventDefault();
@@ -52,7 +51,7 @@ export function Navbar() {
 			}`}
 		>
 			<div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 flex items-center justify-between">
-				{/* Left: Brand Logo */}
+				{/* Left: PlexAI Logo (Pure Black in light mode, White in dark mode) */}
 				<a
 					href="#"
 					onClick={(e) => {
@@ -61,7 +60,7 @@ export function Navbar() {
 					}}
 					className="flex items-center gap-2.5 z-10"
 				>
-					<div className="h-8 w-8 rounded-lg bg-[#635BFF] flex items-center justify-center text-white shadow-xs">
+					<div className="h-8 w-8 rounded-lg bg-[#111111] dark:bg-white flex items-center justify-center text-white dark:text-[#111111] shadow-xs">
 						<Building2 className="h-4 w-4" />
 					</div>
 					<span className="font-semibold text-lg tracking-tight text-[#111111] dark:text-[#F8F8F5] leading-none">
@@ -69,23 +68,23 @@ export function Navbar() {
 					</span>
 				</a>
 
-				{/* Center: True-Centered Desktop Navigation */}
+				{/* Center: Desktop Navigation */}
 				<nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-[#6B7280] dark:text-neutral-400 absolute left-1/2 -translate-x-1/2">
 					{navLinks.map((link) => (
 						<a
 							key={link.label}
 							href={link.href}
 							onClick={(e) => handleScrollTo(e, link.href)}
-							className="hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors cursor-pointer"
+							className="hover:text-[#635BFF] dark:hover:text-[#635BFF] transition-colors cursor-pointer"
 						>
 							{link.label}
 						</a>
 					))}
 				</nav>
 
-				{/* Right: Desktop Controls (Language, Theme, CTA) */}
+				{/* Right: Desktop Controls */}
 				<div className="hidden lg:flex items-center gap-3 z-10">
-					{/* Language Toggle: Fixed h-8 with smooth sliding pill */}
+					{/* Language Toggle */}
 					<div
 						role="group"
 						aria-label="Language selection"
@@ -120,7 +119,7 @@ export function Navbar() {
 						</button>
 					</div>
 
-					{/* Theme Toggle Button: Exact Matching h-8 w-8 */}
+					{/* Theme Toggle Button */}
 					<button
 						type="button"
 						onClick={toggleTheme}
@@ -140,16 +139,17 @@ export function Navbar() {
 					>
 						{t.nav.signIn}
 					</a>
+					{/* Button in pure Black / White */}
 					<a
 						href="#get-started"
-						className="inline-flex items-center gap-2 bg-[#635BFF] text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-[#635BFF]/90 transition-all shadow-xs"
+						className="inline-flex items-center gap-2 bg-[#111111] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-[#111111] text-sm font-medium px-4 py-2 rounded-xl transition-all shadow-xs"
 					>
 						{t.nav.getStarted}
 						<ArrowRight className="h-4 w-4" />
 					</a>
 				</div>
 
-				{/* Mobile Hamburger Button */}
+				{/* Mobile Hamburger */}
 				<button
 					onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 					className="lg:hidden p-2 rounded-lg text-[#111111] dark:text-[#F8F8F5] hover:bg-black/5 dark:hover:bg-white/10"
@@ -171,13 +171,13 @@ export function Navbar() {
 							key={link.label}
 							href={link.href}
 							onClick={(e) => handleScrollTo(e, link.href)}
-							className="text-base font-medium text-[#111111] dark:text-[#F8F8F5] py-1 cursor-pointer"
+							className="text-base font-medium text-[#111111] dark:text-[#F8F8F5] py-1 cursor-pointer hover:text-[#635BFF]"
 						>
 							{link.label}
 						</a>
 					))}
 
-					{/* Mobile Switchers: Language & Theme */}
+					{/* Mobile Switchers */}
 					<div className="pt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
 						<span className="text-xs text-[#6B7280] dark:text-neutral-400">
 							Theme & Lang
@@ -237,7 +237,7 @@ export function Navbar() {
 						</a>
 						<a
 							href="#get-started"
-							className="w-full bg-[#635BFF] text-white text-sm font-medium py-2.5 rounded-lg flex items-center justify-center gap-2"
+							className="w-full bg-[#111111] dark:bg-white text-white dark:text-[#111111] text-sm font-medium py-2.5 rounded-lg flex items-center justify-center gap-2"
 						>
 							{t.nav.getStarted}
 							<ArrowRight className="h-4 w-4" />

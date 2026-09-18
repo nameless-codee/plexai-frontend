@@ -10,7 +10,7 @@ export function ProductMockup() {
 
 	return (
 		<div className="relative mx-auto mt-8 sm:mt-10 w-full max-w-5xl">
-			{/* Floating Card: Hero Visual Data Card */}
+			{/* Floating Card - Top Left */}
 			<motion.div
 				variants={floating}
 				animate="animate"
@@ -53,7 +53,9 @@ export function ProductMockup() {
 						<span className="text-[9px] text-[#6B7280] dark:text-neutral-400 block">
 							{t.mockup.compGap}
 						</span>
-						<span className="text-xs font-bold text-[#635BFF]">-11%</span>
+						<span className="text-xs font-bold text-[#111111] dark:text-white">
+							-11%
+						</span>
 					</div>
 				</div>
 			</motion.div>
@@ -64,7 +66,7 @@ export function ProductMockup() {
 				animate="animate"
 				className="hidden lg:flex items-center gap-2.5 absolute -bottom-4 -right-4 z-20 bg-white dark:bg-[#181818] border border-black/10 dark:border-white/10 shadow-xl rounded-xl px-3 py-2 transition-colors duration-200"
 			>
-				<div className="h-7 w-7 bg-[#635BFF]/10 text-[#635BFF] rounded-lg flex items-center justify-center">
+				<div className="h-7 w-7 bg-black/5 dark:bg-white/10 text-[#111111] dark:text-white rounded-lg flex items-center justify-center">
 					<FileCheck2 className="h-4 w-4" />
 				</div>
 				<div className="text-left">
@@ -105,7 +107,7 @@ export function ProductMockup() {
 										<h3 className="text-sm font-bold text-[#111111] dark:text-[#F8F8F5]">
 											1195 Rue Saint-Hubert
 										</h3>
-										<span className="text-[11px] bg-[#635BFF]/10 text-[#635BFF] font-semibold px-2 py-0.5 rounded">
+										<span className="text-[11px] bg-black/5 dark:bg-white/10 text-[#111111] dark:text-[#F8F8F5] font-semibold px-2 py-0.5 rounded border border-black/5 dark:border-white/10">
 											{t.mockup.triplexBadge}
 										</span>
 									</div>
@@ -140,7 +142,9 @@ export function ProductMockup() {
 									<span className="text-[10px] text-[#6B7280] dark:text-neutral-400">
 										{t.mockup.compGap}
 									</span>
-									<p className="text-sm font-bold text-[#635BFF]">-11%</p>
+									<p className="text-sm font-bold text-[#111111] dark:text-white">
+										-11%
+									</p>
 								</div>
 								<div className="p-2 rounded-lg bg-white dark:bg-[#181818] border border-black/5 dark:border-white/5">
 									<span className="text-[10px] text-[#6B7280] dark:text-neutral-400">
@@ -157,10 +161,10 @@ export function ProductMockup() {
 						<div className="rounded-xl border border-black/10 dark:border-white/10 p-3 bg-white dark:bg-[#181818] flex flex-col gap-2">
 							<div className="flex items-center justify-between">
 								<span className="text-xs font-bold text-[#111111] dark:text-[#F8F8F5] flex items-center gap-1.5">
-									<Layers className="h-3.5 w-3.5 text-[#635BFF]" />
+									<Layers className="h-3.5 w-3.5 text-[#111111] dark:text-white" />
 									{t.mockup.zoningTitle}
 								</span>
-								<span className="text-[11px] text-[#635BFF] flex items-center gap-1 font-medium cursor-pointer">
+								<span className="text-[11px] text-[#111111] dark:text-white flex items-center gap-1 font-medium cursor-pointer hover:underline">
 									{t.mockup.source} <ExternalLink className="h-2.5 w-2.5" />
 								</span>
 							</div>
@@ -219,7 +223,7 @@ export function ProductMockup() {
 										</p>
 									</div>
 									<div className="text-right">
-										<span className="font-bold text-[#635BFF] text-xs">
+										<span className="font-bold text-[#111111] dark:text-white text-xs">
 											Score {item.score}
 										</span>
 										<p className="text-[9px] text-emerald-600 dark:text-emerald-400">

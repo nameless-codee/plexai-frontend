@@ -17,15 +17,16 @@ export function FinalCTA() {
 							{t.finalCta.subheading}
 						</p>
 						<div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+							{/* Primary button in white / black */}
 							<a
 								href="#get-started"
-								className="w-full sm:w-auto bg-[#635BFF] text-white text-sm font-medium px-6 py-3.5 rounded-xl hover:bg-[#635BFF]/90 transition-all flex items-center justify-center gap-2"
+								className="w-full sm:w-auto bg-white hover:bg-neutral-100 text-[#111111] text-sm font-semibold px-6 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs"
 							>
 								{t.finalCta.startFree}
 							</a>
 							<a
 								href="#signin"
-								className="w-full sm:w-auto bg-white/10 text-white text-sm font-medium px-6 py-3.5 rounded-xl hover:bg-white/15 transition-all flex items-center justify-center border border-white/5"
+								className="w-full sm:w-auto bg-white/10 hover:bg-white/15 text-white text-sm font-medium px-6 py-3.5 rounded-xl transition-all flex items-center justify-center border border-white/10"
 							>
 								{t.finalCta.signIn}
 							</a>

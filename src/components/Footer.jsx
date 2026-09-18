@@ -13,7 +13,7 @@ export function Footer() {
 					{/* Brand Column */}
 					<div className="col-span-2">
 						<div className="flex items-center gap-2 font-semibold text-lg text-[#111111] dark:text-[#F8F8F5]">
-							<div className="h-7 w-7 rounded-lg bg-[#635BFF] flex items-center justify-center text-white shadow-xs">
+							<div className="h-7 w-7 rounded-lg bg-[#111111] dark:bg-white flex items-center justify-center text-white dark:text-[#111111] shadow-xs">
 								<Building2 className="h-3.5 w-3.5" />
 							</div>
 							PlexAI
@@ -93,7 +93,7 @@ export function Footer() {
 					</div>
 				</div>
 
-				{/* Bottom Disclaimer */}
+				{/* Disclaimer */}
 				<div className="border-t border-black/10 dark:border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#6B7280] dark:text-neutral-400 gap-4">
 					<p>{t.footer.rights}</p>
 					<p className="text-[11px] text-center sm:text-right">
