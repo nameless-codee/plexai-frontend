@@ -1,6 +1,5 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Menu, X, ArrowRight, Building2 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -83,26 +82,41 @@ export function Navbar() {
 
 				{/* Right: Language Switcher & Action Buttons */}
 				<div className="hidden lg:flex items-center gap-4 z-10">
-					{/* Concentric Pill Language Switcher */}
-					<div className="flex items-center text-xs font-semibold text-[#6B7280] border border-black/10 rounded-full p-1 bg-white/70 relative shadow-2xs">
-						{["EN", "FR"].map((option) => (
-							<button
-								key={option}
-								onClick={() => setLang(option)}
-								className={`relative px-3 py-1 rounded-full text-xs font-semibold transition-colors duration-150 z-10 ${
-									lang === option ? "text-[#111111]" : "hover:text-[#111111]"
-								}`}
-							>
-								{lang === option && (
-									<motion.div
-										layoutId="activeLangIndicator"
-										className="absolute inset-0 bg-black/10 rounded-full"
-										transition={{ type: "spring", stiffness: 500, damping: 35 }}
-									/>
-								)}
-								<span className="relative z-10">{option}</span>
-							</button>
-						))}
+					{/* High-Performance Fluid Language Toggle */}
+					<div
+						role="group"
+						aria-label="Language selection"
+						className="relative flex items-center bg-white/70 border border-black/10 rounded-full p-0.5 shadow-2xs select-none"
+					>
+						{/* Sliding Pill Indicator */}
+						<div
+							className={`absolute top-0.5 bottom-0.5 left-0.5 w-[34px] rounded-full bg-black/10 transition-transform duration-200 ease-out will-change-transform ${
+								lang === "FR" ? "translate-x-[34px]" : "translate-x-0"
+							}`}
+						/>
+
+						<button
+							type="button"
+							onClick={() => setLang("EN")}
+							className={`relative z-10 w-[34px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+								lang === "EN"
+									? "text-[#111111]"
+									: "text-[#6B7280] hover:text-[#111111]"
+							}`}
+						>
+							EN
+						</button>
+						<button
+							type="button"
+							onClick={() => setLang("FR")}
+							className={`relative z-10 w-[34px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+								lang === "FR"
+									? "text-[#111111]"
+									: "text-[#6B7280] hover:text-[#111111]"
+							}`}
+						>
+							FR
+						</button>
 					</div>
 
 					<a
@@ -151,29 +165,34 @@ export function Navbar() {
 					{/* Mobile Language Switcher */}
 					<div className="pt-2 border-t border-black/10 flex items-center justify-between">
 						<span className="text-xs text-[#6B7280]">Langue / Language</span>
-						<div className="flex items-center text-xs font-semibold text-[#6B7280] border border-black/10 rounded-full p-1 bg-white/70 relative">
-							{["EN", "FR"].map((option) => (
-								<button
-									key={option}
-									onClick={() => setLang(option)}
-									className={`relative px-3.5 py-1 rounded-full text-xs font-semibold transition-colors duration-150 ${
-										lang === option ? "text-[#111111]" : "hover:text-[#111111]"
-									}`}
-								>
-									{lang === option && (
-										<motion.div
-											layoutId="activeLangIndicatorMobile"
-											className="absolute inset-0 bg-black/10 rounded-full"
-											transition={{
-												type: "spring",
-												stiffness: 500,
-												damping: 35,
-											}}
-										/>
-									)}
-									<span className="relative z-10">{option}</span>
-								</button>
-							))}
+						<div className="relative flex items-center bg-white/70 border border-black/10 rounded-full p-0.5 select-none">
+							<div
+								className={`absolute top-0.5 bottom-0.5 left-0.5 w-[36px] rounded-full bg-black/10 transition-transform duration-200 ease-out will-change-transform ${
+									lang === "FR" ? "translate-x-[36px]" : "translate-x-0"
+								}`}
+							/>
+							<button
+								type="button"
+								onClick={() => setLang("EN")}
+								className={`relative z-10 w-[36px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+									lang === "EN"
+										? "text-[#111111]"
+										: "text-[#6B7280] hover:text-[#111111]"
+								}`}
+							>
+								EN
+							</button>
+							<button
+								type="button"
+								onClick={() => setLang("FR")}
+								className={`relative z-10 w-[36px] py-1 text-xs font-semibold rounded-full transition-colors duration-150 text-center ${
+									lang === "FR"
+										? "text-[#111111]"
+										: "text-[#6B7280] hover:text-[#111111]"
+								}`}
+							>
+								FR
+							</button>
 						</div>
 					</div>
 
