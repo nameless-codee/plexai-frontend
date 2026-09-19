@@ -7,42 +7,42 @@ export function Footer() {
 	const { t } = useLanguage();
 
 	return (
-		<footer className="border-t border-black/10 dark:border-white/10 bg-[#F8F8F5] dark:bg-[#111111] py-16 transition-colors duration-200">
+		<footer className="border-t border-white/10 bg-[#111111] text-white py-16 transition-colors duration-200">
 			<div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
 				<div className="grid grid-cols-2 md:grid-cols-5 gap-8 pb-12">
 					{/* Brand Column */}
 					<div className="col-span-2">
-						<div className="flex items-center gap-2 font-semibold text-lg text-[#111111] dark:text-[#F8F8F5]">
-							<div className="h-7 w-7 rounded-lg bg-[#111111] dark:bg-white flex items-center justify-center text-white dark:text-[#111111] shadow-xs">
+						<div className="flex items-center gap-2 font-semibold text-lg text-white">
+							<div className="h-7 w-7 rounded-lg bg-white flex items-center justify-center text-[#111111] shadow-xs">
 								<Building2 className="h-3.5 w-3.5" />
 							</div>
 							PlexAI
 						</div>
-						<p className="mt-3 text-xs text-[#6B7280] dark:text-neutral-400 max-w-sm leading-relaxed">
+						<p className="mt-3 text-xs text-neutral-400 max-w-sm leading-relaxed">
 							{t.footer.brandDesc}
 						</p>
 					</div>
 
 					{/* Product */}
 					<div className="flex flex-col gap-2.5">
-						<span className="text-xs font-bold text-[#111111] dark:text-[#F8F8F5]">
+						<span className="text-xs font-bold text-white">
 							{t.footer.colProduct}
 						</span>
 						<a
 							href="#features"
-							className="text-xs text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors"
+							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.nav.features}
 						</a>
 						<a
 							href="#how-it-works"
-							className="text-xs text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors"
+							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.nav.howItWorks}
 						</a>
 						<a
 							href="#faq"
-							className="text-xs text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors"
+							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.nav.faq}
 						</a>
@@ -50,18 +50,18 @@ export function Footer() {
 
 					{/* Account */}
 					<div className="flex flex-col gap-2.5">
-						<span className="text-xs font-bold text-[#111111] dark:text-[#F8F8F5]">
+						<span className="text-xs font-bold text-white">
 							{t.footer.colAccount}
 						</span>
 						<a
 							href="#signin"
-							className="text-xs text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors"
+							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.nav.signIn}
 						</a>
 						<a
 							href="#get-started"
-							className="text-xs text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors"
+							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.footer.createAccount}
 						</a>
@@ -69,32 +69,32 @@ export function Footer() {
 
 					{/* Company */}
 					<div className="flex flex-col gap-2.5">
-						<span className="text-xs font-bold text-[#111111] dark:text-[#F8F8F5]">
+						<span className="text-xs font-bold text-white">
 							{t.footer.colCompany}
 						</span>
 						<a
 							href="#why"
-							className="text-xs text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors"
+							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.footer.whyPlex}
 						</a>
 						<a
 							href="#edge"
-							className="text-xs text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors"
+							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.footer.theEdge}
 						</a>
 						<a
 							href="#faq"
-							className="text-xs text-[#6B7280] dark:text-neutral-400 hover:text-[#111111] dark:hover:text-[#F8F8F5] transition-colors"
+							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.nav.faq}
 						</a>
 					</div>
 				</div>
 
-				{/* Disclaimer */}
-				<div className="border-t border-black/10 dark:border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#6B7280] dark:text-neutral-400 gap-4">
+				{/* Disclaimer & Copyright */}
+				<div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-400 gap-4">
 					<p>{t.footer.rights}</p>
 					<p className="text-[11px] text-center sm:text-right">
 						{t.footer.disclaimer}
