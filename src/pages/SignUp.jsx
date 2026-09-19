@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { navigateTo } from "../lib/navigation";
+import { DotPattern } from "../components/ui/DotPattern";
 
 export function SignUp() {
 	const { lang, setLang } = useLanguage();
@@ -27,20 +28,15 @@ export function SignUp() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		// Registration flow handler
 	};
 
 	return (
 		<div className="min-h-screen bg-[#F8F8F5] dark:bg-[#111111] text-[#111111] dark:text-[#F8F8F5] flex flex-col justify-between items-center px-4 py-8 sm:py-12 relative transition-colors duration-200">
-			{/* Subtle Dot Matrix Background */}
-			<div
-				className="absolute inset-0 pointer-events-none opacity-[0.25] dark:opacity-[0.1]"
-				style={{
-					backgroundImage: `radial-gradient(currentColor 1px, transparent 1px)`,
-					backgroundSize: "24px 24px",
-				}}
-			/>
+			{/* Centralized Dot Matrix Background */}
+			<DotPattern />
 
-			{/* Top Header: Brand Logo & Navigation */}
+			{/* Top Header */}
 			<div className="w-full max-w-5xl flex items-center justify-between z-10 mb-6">
 				<button
 					type="button"
@@ -51,7 +47,7 @@ export function SignUp() {
 					{lang === "FR" ? "Retour à l'accueil" : "Back to home"}
 				</button>
 
-				{/* Center Brand */}
+				{/* Center Brand Logo */}
 				<button
 					type="button"
 					onClick={() => navigateTo("/")}
@@ -145,7 +141,7 @@ export function SignUp() {
 
 					{/* Registration Form */}
 					<form onSubmit={handleSubmit} className="flex flex-col gap-3">
-						{/* Invite Code Field */}
+						{/* Invite Code */}
 						<div>
 							<label className="block text-xs font-semibold text-[#111111] dark:text-neutral-300 mb-1">
 								{lang === "FR" ? "Code d'invitation" : "Invite code"}
@@ -161,7 +157,7 @@ export function SignUp() {
 							/>
 						</div>
 
-						{/* Name Field */}
+						{/* Name */}
 						<div>
 							<label className="block text-xs font-semibold text-[#111111] dark:text-neutral-300 mb-1">
 								{lang === "FR" ? "Nom complet" : "Name"}
@@ -177,7 +173,7 @@ export function SignUp() {
 							/>
 						</div>
 
-						{/* Email Field */}
+						{/* Email */}
 						<div>
 							<label className="block text-xs font-semibold text-[#111111] dark:text-neutral-300 mb-1">
 								{lang === "FR" ? "Courriel" : "Email"}
@@ -193,7 +189,7 @@ export function SignUp() {
 							/>
 						</div>
 
-						{/* Password Field */}
+						{/* Password */}
 						<div>
 							<label className="block text-xs font-semibold text-[#111111] dark:text-neutral-300 mb-1">
 								{lang === "FR" ? "Mot de passe" : "Password"}
@@ -235,6 +231,7 @@ export function SignUp() {
 						</button>
 					</form>
 
+					{/* Switch to Sign In */}
 					<p className="mt-4 text-center text-xs text-[#6B7280] dark:text-neutral-400">
 						{lang === "FR"
 							? "Vous avez déjà un compte ? "

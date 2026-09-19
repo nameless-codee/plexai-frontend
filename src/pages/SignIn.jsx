@@ -10,29 +10,31 @@ import {
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { navigateTo } from "../lib/navigation";
+import { DotPattern } from "../components/ui/DotPattern";
 
 export function SignIn() {
 	const { lang, setLang } = useLanguage();
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [formData, setFormData] = useState({
+		email: "",
+		password: "",
+	});
 	const [showPassword, setShowPassword] = useState(false);
+
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		// Authentication submission logic
 	};
 
 	return (
 		<div className="min-h-screen bg-[#F8F8F5] dark:bg-[#111111] text-[#111111] dark:text-[#F8F8F5] flex flex-col justify-between items-center px-4 py-8 sm:py-12 relative transition-colors duration-200">
-			{/* Subtle Dot Matrix Background */}
-			<div
-				className="absolute inset-0 pointer-events-none opacity-[0.25] dark:opacity-[0.1]"
-				style={{
-					backgroundImage: `radial-gradient(currentColor 1px, transparent 1px)`,
-					backgroundSize: "24px 24px",
-				}}
-			/>
+			{/* Centralized Dot Matrix Background */}
+			<DotPattern />
 
-			{/* Top Header: Brand Logo & Floating Controls */}
+			{/* Top Navigation Bar */}
 			<div className="w-full max-w-5xl flex items-center justify-between z-10 mb-6">
 				<button
 					type="button"
@@ -82,22 +84,22 @@ export function SignIn() {
 				</div>
 			</div>
 
-			{/* Main Card Container */}
+			{/* Main Centered Floating Card */}
 			<div className="w-full max-w-4xl bg-white dark:bg-[#181818] border border-black/10 dark:border-white/10 rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 p-6 sm:p-10 gap-8 z-10 my-auto">
-				{/* Left Column: Form */}
+				{/* Left Column: Sign In Form */}
 				<div className="flex flex-col justify-center">
 					<div>
 						<h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] dark:text-white">
-							{lang === "FR" ? "Connexion" : "Sign in to PlexAI"}
+							{lang === "FR" ? "Bon retour parmi nous" : "Welcome back"}
 						</h1>
 						<p className="mt-1.5 text-xs sm:text-sm text-[#6B7280] dark:text-neutral-400">
 							{lang === "FR"
-								? "Vos opportunités d'investissement à portée de clic."
-								: "Your Quebec deal pipeline is one click away."}
+								? "Connectez-vous pour accéder à votre tableau de bord."
+								: "Sign in to access your investment intelligence dashboard."}
 						</p>
 					</div>
 
-					{/* Google Button Top */}
+					{/* Social Sign-in */}
 					<button
 						type="button"
 						className="mt-6 w-full flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#222222] hover:bg-black/5 dark:hover:bg-white/5 text-xs sm:text-sm font-semibold text-[#111111] dark:text-white transition-all shadow-2xs cursor-pointer"
@@ -127,25 +129,28 @@ export function SignIn() {
 						</span>
 					</button>
 
-					{/* Divider */}
+					{/* Form Divider */}
 					<div className="relative my-4 flex items-center justify-center">
 						<div className="w-full border-t border-black/10 dark:border-white/10" />
 						<span className="absolute bg-white dark:bg-[#181818] px-3 text-[11px] text-[#6B7280] dark:text-neutral-400">
-							{lang === "FR" ? "Ou continuer avec" : "Or continue with"}
+							{lang === "FR"
+								? "Ou continuer avec un courriel"
+								: "Or continue with email"}
 						</span>
 					</div>
 
-					{/* Form */}
-					<form onSubmit={handleSubmit} className="flex flex-col gap-3">
+					{/* Email / Password Form */}
+					<form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
 						<div>
 							<label className="block text-xs font-semibold text-[#111111] dark:text-neutral-300 mb-1">
 								{lang === "FR" ? "Courriel" : "Email"}
 							</label>
 							<input
 								type="email"
+								name="email"
 								required
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
+								value={formData.email}
+								onChange={handleChange}
 								placeholder="you@example.com"
 								className="w-full px-3.5 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-[#F8F8F5]/60 dark:bg-[#111111]/60 text-xs sm:text-sm text-[#111111] dark:text-white placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#111111] dark:focus:ring-white transition-all shadow-2xs"
 							/>
@@ -157,18 +162,19 @@ export function SignIn() {
 									{lang === "FR" ? "Mot de passe" : "Password"}
 								</label>
 								<a
-									href="#forgot"
-									className="text-xs font-medium text-[#6B7280] dark:text-neutral-400 hover:text-[#635BFF] transition-colors"
+									href="#forgot-password"
+									className="text-[11px] text-[#6B7280] dark:text-neutral-400 hover:underline"
 								>
-									{lang === "FR" ? "Oublié ?" : "Forgot?"}
+									{lang === "FR" ? "Mot de passe oublié ?" : "Forgot password?"}
 								</a>
 							</div>
 							<div className="relative">
 								<input
 									type={showPassword ? "text" : "password"}
+									name="password"
 									required
-									value={password}
-									onChange={(e) => setPassword(e.target.value)}
+									value={formData.password}
+									onChange={handleChange}
 									placeholder="••••••••"
 									className="w-full px-3.5 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-[#F8F8F5]/60 dark:bg-[#111111]/60 text-xs sm:text-sm text-[#111111] dark:text-white placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#111111] dark:focus:ring-white transition-all shadow-2xs pr-10"
 								/>
@@ -186,30 +192,30 @@ export function SignIn() {
 							</div>
 						</div>
 
-						{/* Black / White Submit Button */}
 						<button
 							type="submit"
 							className="mt-2 w-full bg-[#111111] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-[#111111] text-sm font-semibold py-2.5 rounded-xl transition-all shadow-xs cursor-pointer"
 						>
-							{lang === "FR" ? "Se connecter" : "Sign in"}
+							{lang === "FR" ? "Connexion" : "Sign in"}
 						</button>
 					</form>
 
+					{/* Switch to Sign Up */}
 					<p className="mt-5 text-center text-xs text-[#6B7280] dark:text-neutral-400">
 						{lang === "FR"
-							? "Vous n'avez pas de compte ? "
+							? "Pas encore de compte ? "
 							: "Don't have an account? "}
 						<button
 							type="button"
 							onClick={() => navigateTo("/register")}
 							className="font-bold text-[#111111] dark:text-white hover:underline cursor-pointer ml-1"
 						>
-							{lang === "FR" ? "Créer un compte" : "Create one free"}
+							{lang === "FR" ? "Créer un compte gratuit" : "Create one free"}
 						</button>
 					</p>
 				</div>
 
-				{/* Right Column: Inset Testimonial Card */}
+				{/* Right Column: Inset Social Proof Card */}
 				<div className="rounded-2xl bg-[#F8F8F5] dark:bg-[#111111] border border-black/5 dark:border-white/5 p-6 sm:p-8 flex flex-col justify-between text-center">
 					<div className="flex flex-col items-center justify-center my-auto py-4">
 						<div className="flex gap-1 text-amber-500 mb-5">
@@ -222,7 +228,7 @@ export function SignIn() {
 						</div>
 						<blockquote className="text-sm sm:text-base font-medium text-[#111111] dark:text-[#F8F8F5] leading-relaxed max-w-xs">
 							{lang === "FR"
-								? "« J'ai trouvé un triplex à 12 % sous le marché dès le matin de sa mise en vente. PlexAI a décelé un potentiel d'agrandissement qui m'aurait complètement échappé. »"
+								? "« J'ai trouvé un triplex 12 % sous le marché dès le matin de sa mise en vente. PlexAI a décelé un potentiel d'agrandissement exceptionnel. »"
 								: "“I found a triplex 12% under market the morning it was listed. PlexAI flagged the development upside I would have completely missed.”"}
 						</blockquote>
 						<div className="mt-6 flex flex-col items-center">
@@ -242,14 +248,14 @@ export function SignIn() {
 						<ShieldCheck className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
 						<span>
 							{lang === "FR"
-								? "Basé sur les registres officiels du gouvernement."
-								: "Backed by official Quebec government cadastral data."}
+								? "Données foncières et cadastrales québécoises vérifiées."
+								: "Backed by official Quebec land registry records."}
 						</span>
 					</div>
 				</div>
 			</div>
 
-			{/* Terms & Privacy Footer */}
+			{/* Footer Legal Terms */}
 			<div className="text-center text-[11px] text-[#6B7280] dark:text-neutral-400 z-10 mt-6">
 				{lang === "FR"
 					? "En continuant, vous acceptez nos "
