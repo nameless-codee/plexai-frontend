@@ -2,9 +2,25 @@
 import React from "react";
 import { Building2 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { navigateTo } from "../lib/navigation";
 
 export function Footer() {
 	const { t } = useLanguage();
+
+	const handleSmoothScroll = (e, targetId) => {
+		e.preventDefault();
+		const targetElement = document.querySelector(targetId);
+		if (targetElement) {
+			const navHeight = 80;
+			const elementPosition = targetElement.getBoundingClientRect().top;
+			const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: "smooth",
+			});
+		}
+	};
 
 	return (
 		<footer className="border-t border-white/10 bg-[#111111] text-white py-16 transition-colors duration-200">
@@ -12,12 +28,19 @@ export function Footer() {
 				<div className="grid grid-cols-2 md:grid-cols-5 gap-8 pb-12">
 					{/* Brand Column */}
 					<div className="col-span-2">
-						<div className="flex items-center gap-2 font-semibold text-lg text-white">
+						<a
+							href="/"
+							onClick={(e) => {
+								e.preventDefault();
+								navigateTo("/");
+							}}
+							className="inline-flex items-center gap-2 font-semibold text-lg text-white"
+						>
 							<div className="h-7 w-7 rounded-lg bg-white flex items-center justify-center text-[#111111] shadow-xs">
 								<Building2 className="h-3.5 w-3.5" />
 							</div>
 							PlexAI
-						</div>
+						</a>
 						<p className="mt-3 text-xs text-neutral-400 max-w-sm leading-relaxed">
 							{t.footer.brandDesc}
 						</p>
@@ -30,18 +53,21 @@ export function Footer() {
 						</span>
 						<a
 							href="#features"
+							onClick={(e) => handleSmoothScroll(e, "#features")}
 							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.nav.features}
 						</a>
 						<a
 							href="#how-it-works"
+							onClick={(e) => handleSmoothScroll(e, "#how-it-works")}
 							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.nav.howItWorks}
 						</a>
 						<a
 							href="#faq"
+							onClick={(e) => handleSmoothScroll(e, "#faq")}
 							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.nav.faq}
@@ -53,18 +79,20 @@ export function Footer() {
 						<span className="text-xs font-bold text-white">
 							{t.footer.colAccount}
 						</span>
-						<a
-							href="#signin"
-							className="text-xs text-neutral-400 hover:text-white transition-colors"
+						<button
+							type="button"
+							onClick={() => navigateTo("/login")}
+							className="text-left text-xs text-neutral-400 hover:text-white transition-colors cursor-pointer"
 						>
 							{t.nav.signIn}
-						</a>
-						<a
-							href="#get-started"
-							className="text-xs text-neutral-400 hover:text-white transition-colors"
+						</button>
+						<button
+							type="button"
+							onClick={() => navigateTo("/register")}
+							className="text-left text-xs text-neutral-400 hover:text-white transition-colors cursor-pointer"
 						>
 							{t.footer.createAccount}
-						</a>
+						</button>
 					</div>
 
 					{/* Company */}
@@ -74,18 +102,21 @@ export function Footer() {
 						</span>
 						<a
 							href="#why"
+							onClick={(e) => handleSmoothScroll(e, "#why")}
 							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.footer.whyPlex}
 						</a>
 						<a
 							href="#edge"
+							onClick={(e) => handleSmoothScroll(e, "#edge")}
 							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.footer.theEdge}
 						</a>
 						<a
 							href="#faq"
+							onClick={(e) => handleSmoothScroll(e, "#faq")}
 							className="text-xs text-neutral-400 hover:text-white transition-colors"
 						>
 							{t.nav.faq}

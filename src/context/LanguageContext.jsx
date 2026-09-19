@@ -15,7 +15,7 @@ const translations = {
 			headline: "Spot the undervalued Quebec property before anyone else.",
 			subheadline:
 				"PlexAI watches the entire Quebec market around the clock, scores every listing with AI, uncovers hidden development potential from official records, and pings you the second a real opportunity appears.",
-			startFree: "Start free →",
+			startFree: "Start free",
 			seeHowItWorks: "See how it works",
 			badges: [
 				"2,000+ listings analyzed",
@@ -254,7 +254,7 @@ const translations = {
 				"Dénichez les propriétés sous-évaluées au Québec avant tout le monde.",
 			subheadline:
 				"PlexAI surveille le marché québécois en continu, évalue chaque inscription grâce à l'IA, révèle le potentiel de densification via les données officielles et vous alerte dès qu'une opportunité apparaît.",
-			startFree: "Essai gratuit →",
+			startFree: "Essai gratuit",
 			seeHowItWorks: "Voir comment ça marche",
 			badges: [
 				"2 000+ propriétés analysées",

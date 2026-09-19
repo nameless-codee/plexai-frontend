@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowRight, Building2, Sun, Moon } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
+import { navigateTo } from "../lib/navigation";
 
 export function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -51,12 +52,12 @@ export function Navbar() {
 			}`}
 		>
 			<div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 flex items-center justify-between">
-				{/* Left: PlexAI Logo (Pure Black in light mode, White in dark mode) */}
+				{/* Left: Brand Logo */}
 				<a
-					href="#"
+					href="/"
 					onClick={(e) => {
 						e.preventDefault();
-						window.scrollTo({ top: 0, behavior: "smooth" });
+						navigateTo("/");
 					}}
 					className="flex items-center gap-2.5 z-10"
 				>
@@ -119,7 +120,7 @@ export function Navbar() {
 						</button>
 					</div>
 
-					{/* Theme Toggle Button */}
+					{/* Theme Toggle */}
 					<button
 						type="button"
 						onClick={toggleTheme}
@@ -133,20 +134,24 @@ export function Navbar() {
 						)}
 					</button>
 
-					<a
-						href="#signin"
-						className="text-sm font-medium text-[#111111] dark:text-[#F8F8F5] hover:text-[#635BFF] transition-colors px-1"
+					{/* Sign in Button -> routes to /login */}
+					<button
+						type="button"
+						onClick={() => navigateTo("/login")}
+						className="text-sm font-medium text-[#111111] dark:text-[#F8F8F5] hover:text-[#635BFF] transition-colors px-1 cursor-pointer"
 					>
 						{t.nav.signIn}
-					</a>
-					{/* Button in pure Black / White */}
-					<a
-						href="#get-started"
-						className="inline-flex items-center gap-2 bg-[#111111] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-[#111111] text-sm font-medium px-4 py-2 rounded-xl transition-all shadow-xs"
+					</button>
+
+					{/* Get started Button -> routes to /register */}
+					<button
+						type="button"
+						onClick={() => navigateTo("/register")}
+						className="inline-flex items-center gap-2 bg-[#111111] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-[#111111] text-sm font-medium px-4 py-2 rounded-xl transition-all shadow-xs cursor-pointer"
 					>
 						{t.nav.getStarted}
 						<ArrowRight className="h-4 w-4" />
-					</a>
+					</button>
 				</div>
 
 				{/* Mobile Hamburger */}
@@ -177,7 +182,6 @@ export function Navbar() {
 						</a>
 					))}
 
-					{/* Mobile Switchers */}
 					<div className="pt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
 						<span className="text-xs text-[#6B7280] dark:text-neutral-400">
 							Theme & Lang
@@ -229,19 +233,27 @@ export function Navbar() {
 					</div>
 
 					<div className="pt-2 border-t border-black/10 dark:border-white/10 flex flex-col gap-3">
-						<a
-							href="#signin"
-							className="w-full text-center text-sm font-medium py-2 rounded-lg border border-black/10 dark:border-white/10 text-[#111111] dark:text-[#F8F8F5]"
+						<button
+							type="button"
+							onClick={() => {
+								setMobileMenuOpen(false);
+								navigateTo("/login");
+							}}
+							className="w-full text-center text-sm font-medium py-2 rounded-lg border border-black/10 dark:border-white/10 text-[#111111] dark:text-[#F8F8F5] cursor-pointer"
 						>
 							{t.nav.signIn}
-						</a>
-						<a
-							href="#get-started"
-							className="w-full bg-[#111111] dark:bg-white text-white dark:text-[#111111] text-sm font-medium py-2.5 rounded-lg flex items-center justify-center gap-2"
+						</button>
+						<button
+							type="button"
+							onClick={() => {
+								setMobileMenuOpen(false);
+								navigateTo("/register");
+							}}
+							className="w-full bg-[#111111] dark:bg-white text-white dark:text-[#111111] text-sm font-medium py-2.5 rounded-lg flex items-center justify-center gap-2 cursor-pointer"
 						>
 							{t.nav.getStarted}
 							<ArrowRight className="h-4 w-4" />
-						</a>
+						</button>
 					</div>
 				</div>
 			)}
